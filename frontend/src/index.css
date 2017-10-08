@@ -1,0 +1,145 @@
+html {
+
+}
+
+select {
+  display: block !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif !important;
+}
+a {
+  display: block;
+}
+a:hover {
+  cursor: pointer !important;
+}
+
+
+/*******************************************************************************
+  HELPERS
+*******************************************************************************/
+
+.display-inline {
+  display: inline;
+}
+
+.inline-link {
+  cursor: pointer !important;
+  color: #2196F3
+}
+.inline-link:hover {
+  text-decoration: underline;
+}
+
+.small-br {
+  font-size: 4px;
+}
+
+
+/*******************************************************************************
+  CATEGORY LIST
+*******************************************************************************/
+
+.category-list-item:hover {
+  /*border-radius: 50px;*/
+  background-color: #2196F3 !important;
+  color: white !important;
+  /*color: red;*/
+}
+
+/*******************************************************************************
+  VOTE EDIT BUTTONS
+*******************************************************************************/
+
+.post_btn {
+  padding: 0 10px !important;
+  width: 38px !important;
+}
+
+.post_btn_left {
+  margin-right: 10px;
+}
+
+.post_btn_right {
+  margin-top: 4px;
+  margin-left: 5px;
+}
+
+.btn-smaller {
+    height: 28px;
+    line-height: 28px;
+    padding: 0 10px;
+}
+
+.post_btn:hover {
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+}
+
+.post-badge {
+  margin-left: 3px !important;
+}
+
+.badge {
+  height: 28px !important;
+  line-height: 28px !important;
+  padding: 0 12px !important;
+  font-size: 10pt !important;
+  min-width: 81px !important;
+}
+
+.vote_buttons {
+  float: right;
+  margin-right: 0px;
+  padding-right: 0px;
+}
+
+
+/*******************************************************************************
+  SORT BAR
+*******************************************************************************/
+
+.sort_by_label {
+  text-align: left !important;
+  max-width: 90px !important;
+  padding: 0 6px !important;
+
+}
+
+.sort_catgories {
+  max-width: 70px !important;
+  padding: 0 12px !important;
+
+}
+
+.create_post {
+  max-width: 150px !important;
+  padding: 0 10px !important;
+  margin-bottom: 0px !important;
+  height: 43px !important;
+
+}
+
+.select_sort {
+  max-width: 50%;
+}
+
+
+/*******************************************************************************
+  POST AND COMMENT CARD
+*******************************************************************************/
+
+.card-content {
+  padding-top: 1rem !important;
+}
+.post_id {
+  padding-top: 3px !important;
+  font-size: 11px !important;
+}
+
+.post_author {
+  font-weight: 600;
+}
