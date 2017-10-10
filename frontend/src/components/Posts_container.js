@@ -10,11 +10,11 @@ import PropTypes from 'prop-types'
 
 class Posts extends Component {
 
-  componentWillMount () {
-    const { url, fetchPostsAsync } = this.props
-    const path = url === "" ? "posts" : `${url}/posts`
-    fetchPostsAsync(path)
-  }
+  // componentWillMount () {
+  //   const { url, fetchPostsAsync } = this.props
+  //   const path = url === "" ? "posts" : `${url}/posts`
+  //   fetchPostsAsync(path)
+  // }
 
   constructPosts () {
 

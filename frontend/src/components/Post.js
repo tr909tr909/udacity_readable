@@ -62,9 +62,9 @@ const constructPost = (props) => {
 
 class Post extends Component {
 
-  componentWillMount() {
-    this.props.get_comments_count_async(this.props.post.id)
-  }
+  // componentWillMount() {
+  //   this.props.get_comments_count_async(this.props.post.id)
+  // }
 
   render () {
     return (

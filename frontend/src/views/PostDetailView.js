@@ -17,7 +17,7 @@ class PostDetailView extends Component {
     const { id } = this.props.match.params;
 
     this.props.fetchPostsAsync(`posts/${id}`);
-    this.props.fetchCommentsAsync(`posts/${id}/comments`)
+    // this.props.fetchCommentsAsync(`posts/${id}/comments`)
   }
 
   render () {

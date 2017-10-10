@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import Posts from '../components/Posts_container';
 import SortBy from '../components/SortBy_container'
 import CategoryList from '../components/CategoryList'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { fetchPostsAsync } from '../actions/fetch_posts'
+import { fetchCategoriesAsync } from '../actions/fetch_categories'
+
 
 class CategoryView extends Component {
+
+  componentWillMount() {
+    console.log(this.props.match.params.cat);
+    this.props.fetchPostsAsync(`${this.props.match.params.cat}/posts`)
+    this.props.fetchCategoriesAsync()
+  }
 
   render () {
 
@@ -28,4 +39,10 @@ class CategoryView extends Component {
   }
 }
 
-export default CategoryView;
+const actionsToProps = (dispatch) => (
+  bindActionCreators({
+    fetchPostsAsync,
+    fetchCategoriesAsync
+  },dispatch)
+)
+export default connect(null, actionsToProps)(CategoryView);
