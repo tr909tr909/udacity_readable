@@ -26,7 +26,7 @@ class PostDetailView extends Component {
 
     return (
       <div className="post-detail-view row">
-
+        <p>detail view</p>
         <div className="col s12 m3 l2 offset-l1 button-collapse">
           <CategoryList categories={[{name:"home", path: "/"}]}/>
         </div>

@@ -20,7 +20,7 @@ class CategoryList extends Component {
     }
     else {
       return this.props.categories.map( (cat, i)=> {
-        const path = cat.path === "/" ? "/" : `category/${cat.path}`
+        const path = cat.path === "/" ? "/" : `/${cat.path}`
         return (
           <Link key={i}
             onClick={()=>this.props.filter(cat.name)}

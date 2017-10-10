@@ -9,9 +9,9 @@ class CategoryView extends Component {
 
     return(
       <div className="category_view row">
-
+        <p>cat view</p>
         <div className="col s12 m4 l2 offset-l1 button-collapse">
-          
+
           <CategoryList
             categories={[]}
           />

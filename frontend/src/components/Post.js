@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import VoteButtons from './VoteButtons'
 import EditButtons from './EditButtons'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {get_comments_count_async} from '../actions/get_comments_count'
 
 const convertTime = ( time ) => {
   const date = new Date(time)
@@ -10,7 +13,7 @@ const convertTime = ( time ) => {
 }
 
 const constructPost = (props) => {
-  const { id, author, title, timestamp, voteScore, body } = props.post;
+  const { id, author, title, timestamp, voteScore, body, category, commentsCount } = props.post;
   const { edit, remove, ratePost } = props;
 
   return (
@@ -41,7 +44,7 @@ const constructPost = (props) => {
       {/* CONTENT */}
       <div className="card-content">
 
-        <Link to={`/post/${id}`} className="card-title">{title}</Link>
+        <Link to={`/${category}/${id}`} className="card-title">{title}</Link>
         <p>
           <span className="blue-text">{author}</span><span> {" on "} </span>
           <span className="grey-text">{convertTime(timestamp)}{":"}</span>
@@ -50,22 +53,32 @@ const constructPost = (props) => {
         <p className="small-br">&nbsp;</p>
 
         <p>{body}.</p>
-
+        <p className="comments_count">{commentsCount === 1 ? `1 comment` : `${commentsCount} comments`}</p>
         <span className="grey-text post_id right">{id}</span>
       </div>
     </div>
   )
 }
 
-const Post = (props) => (
-  <div className="post row">
+class Post extends Component {
 
-    <div className="">
-      {props.post ? constructPost(props) : "No Posts Yet"}
-    </div>
+  componentWillMount() {
+    this.props.get_comments_count_async(this.props.post.id)
+  }
 
-  </div>
-)
+  render () {
+    return (
+        <div className="post row">
+
+          <div className="">
+            {this.props.post ? constructPost(this.props) : "No Posts Yet"}
+          </div>
+
+        </div>
+    )
+  }
+
+}
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
@@ -73,5 +86,7 @@ Post.propTypes = {
   remove: PropTypes.func.isRequired,
   ratePost: PropTypes.func.isRequired,
 }
-
-export default Post;
+const actionsToProps = (dispatch) => (
+  bindActionCreators({get_comments_count_async}, dispatch)
+)
+export default connect(null, actionsToProps)(Post);
