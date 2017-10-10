@@ -8,10 +8,6 @@ import { filter_posts } from '../actions/filter_posts'
 
 class CategoryListContainer extends Component {
 
-  // componentWillMount () {
-  //   this.props.fetchCategoriesAsync();
-  // }
-
   render () {
     return (
       <CategoryList

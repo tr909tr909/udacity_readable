@@ -1,7 +1,13 @@
 import axios from 'axios'
 import { BASE_API_URL, AUTH_HEADER } from './'
-import { updateComment } from './update_a_comment'
+// import { updateComment } from './update_a_comment'
+export const DELETED_A_COMMENT = "DELETED_A_COMMENT"
 
+
+export const deleteComment = ( cmt ) => ({
+  type: DELETED_A_COMMENT,
+  payload: cmt
+})
 
 /*
     DELETE /comments/:id
@@ -21,6 +27,7 @@ export const delete_a_comment_async = (id) => (
     }
 
     axios(config)
-    .then( res => dispatch(updateComment(res.data)))
+    // .then( res => dispatch(updateComment(res.data)))
+    .then( res => dispatch( deleteComment(res.data) ))
   }
 )

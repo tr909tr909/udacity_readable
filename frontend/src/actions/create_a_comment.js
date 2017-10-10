@@ -22,10 +22,7 @@ POST /comments
     author: String
     parentId: Should match a post id in the database.
 
-
-
 */
-
 
 
 export const create_a_comment_async = (comment) => (

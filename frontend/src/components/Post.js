@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import VoteButtons from './VoteButtons'
 import EditButtons from './EditButtons'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import {get_comments_count_async} from '../actions/get_comments_count'
 
 const convertTime = ( time ) => {
   const date = new Date(time)
@@ -13,8 +10,10 @@ const convertTime = ( time ) => {
 }
 
 const constructPost = (props) => {
-  const { id, author, title, timestamp, voteScore, body, category, commentsCount } = props.post;
+  const { id, author, title, timestamp, voteScore, body, category } = props.post;
   const { edit, remove, ratePost } = props;
+
+  const comments_count = props.comments ? props.comments.length : 0;
 
   return (
     <div className="card">
@@ -53,8 +52,17 @@ const constructPost = (props) => {
         <p className="small-br">&nbsp;</p>
 
         <p>{body}.</p>
-        <p className="comments_count">{commentsCount === 1 ? `1 comment` : `${commentsCount} comments`}</p>
+
+
+        <hr></hr>
+
+      {/* FOOTER */}
+        <Link to={`/${category}/${id}`} className="comments_count left">
+          {comments_count === 1 ? `1 comment` : `${comments_count} comments`}
+        </Link>
+
         <span className="grey-text post_id right">{id}</span>
+        
       </div>
     </div>
   )
@@ -62,11 +70,8 @@ const constructPost = (props) => {
 
 class Post extends Component {
 
-  // componentWillMount() {
-  //   this.props.get_comments_count_async(this.props.post.id)
-  // }
-
   render () {
+
     return (
         <div className="post row">
 
@@ -84,9 +89,7 @@ Post.propTypes = {
   post: PropTypes.object.isRequired,
   edit:  PropTypes.func.isRequired,
   remove: PropTypes.func.isRequired,
-  ratePost: PropTypes.func.isRequired,
+  ratePost: PropTypes.func.isRequired
 }
-const actionsToProps = (dispatch) => (
-  bindActionCreators({get_comments_count_async}, dispatch)
-)
-export default connect(null, actionsToProps)(Post);
+
+export default Post

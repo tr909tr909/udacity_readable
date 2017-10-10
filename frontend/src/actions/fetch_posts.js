@@ -1,4 +1,5 @@
 import { BASE_API_URL, AUTH_HEADER } from './'
+import { fetch_all_comments_async } from './fetch_all_comments'
 import axios from 'axios'
 
 export const FETCHED_POSTS = "FETCHED_POSTS"
@@ -21,6 +22,15 @@ export const fetchPostsAsync = ( path = "") => (
     }
 
     axios(config)
-    .then (res => dispatch( fetchedPosts( res ) ))
+    .then (res => {
+      dispatch( fetchedPosts( res ) );
+      return res
+    })
+    .then ( res => {
+      // console.log(res.data.constructor);
+      // console.log("fetch res", res.data);
+      const arr = res.data.constructor === Array ? res.data : [res.data]
+      arr.forEach( post => dispatch( fetch_all_comments_async(post.id) ) )
+    })
   }
 )

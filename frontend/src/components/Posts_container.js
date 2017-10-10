@@ -10,12 +10,6 @@ import PropTypes from 'prop-types'
 
 class Posts extends Component {
 
-  // componentWillMount () {
-  //   const { url, fetchPostsAsync } = this.props
-  //   const path = url === "" ? "posts" : `${url}/posts`
-  //   fetchPostsAsync(path)
-  // }
-
   constructPosts () {
 
     const { posts, set_create_edit_modal,
@@ -30,6 +24,7 @@ class Posts extends Component {
           edit={()=>set_create_edit_modal("post", "edit", post)}
           remove={()=>deletePostAsync(post.id)}
           ratePost={( bool )=>ratePostAsync(post.id, bool)}
+          comments={this.props.all_comments[post.id]}
         />
       ))
     }
@@ -49,7 +44,7 @@ class Posts extends Component {
 }
 
 
-const mapStateToProps = ( { posts, sorting_posts, filter_posts } ) => {
+const mapStateToProps = ( { posts, sorting_posts, filter_posts, all_comments } ) => {
 
   let sorted = []
   const { criteria, ascending } = sorting_posts;
@@ -68,7 +63,8 @@ const mapStateToProps = ( { posts, sorting_posts, filter_posts } ) => {
         return true
       } else {return false }
 
-    })
+    }),
+    all_comments
   }
 }
 
